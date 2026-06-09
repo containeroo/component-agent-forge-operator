@@ -1,0 +1,81 @@
+= Parameters
+
+The parent key for all of the following parameters is `agent_forge_operator`.
+
+== `name`
+
+[horizontal]
+type:: string
+default:: `agent-forge-operator`
+
+Release name used for the Helm deployment.
+
+== `namespace`
+
+[horizontal]
+type:: string
+default:: `syn-agent-forge-operator`
+
+The namespace in which to deploy this component.
+
+== `charts.agent-forge-operator.source`
+
+[horizontal]
+type:: string
+default:: `https://charts.containeroo.ch`
+
+Upstream Helm repository URL for `agent-forge-operator`.
+
+== `charts.agent-forge-operator.version`
+
+[horizontal]
+type:: string
+default:: `0.1.1`
+
+Upstream Helm chart version to deploy.
+
+== `images.operator.repository`
+
+[horizontal]
+type:: string
+default:: `ghcr.io/containeroo/agent-forge-operator`
+
+Operator image repository used in chart values.
+
+== `images.operator.tag`
+
+[horizontal]
+type:: string
+default:: `v0.0.17`
+
+Operator image tag used in chart values.
+
+== `helm_values`
+
+[horizontal]
+type:: dict
+default:: `{"image": "${agent_forge_operator:images:operator}"}`
+
+Values passed directly to the upstream Helm chart.
+
+== `helm_values.image`
+
+[horizontal]
+type:: dict
+default:: `${agent_forge_operator:images:operator}`
+
+Image configuration map passed to the Helm chart.
+
+== Example
+
+[source,yaml]
+----
+agent_forge_operator:
+  namespace: syn-agent-forge-operator
+  charts:
+    agent-forge-operator:
+      version: 0.1.1
+  images:
+    operator:
+      tag: v0.0.17
+----

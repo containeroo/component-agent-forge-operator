@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/instance: agent-forge-operator
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: agent-forge-operator
+    app.kubernetes.io/version: v0.0.17
+    helm.sh/chart: agent-forge-operator-0.1.1
+  name: agent-forge-operator
+  namespace: syn-agent-forge-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: agent-forge-operator
+      app.kubernetes.io/name: agent-forge-operator
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: agent-forge-operator
+      labels:
+        app.kubernetes.io/instance: agent-forge-operator
+        app.kubernetes.io/name: agent-forge-operator
+    spec:
+      containers:
+        - args:
+            - --leader-elect
+            - --health-probe-bind-address=:8081
+            - --metrics-bind-address=:8443
+          image: ghcr.io/containeroo/agent-forge-operator:v0.0.17
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: probes
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          name: agent-forge-operator
+          ports:
+            - containerPort: 8443
+              name: metrics
+              protocol: TCP
+            - containerPort: 8081
+              name: probes
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: probes
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          resources:
+            limits:
+              cpu: 500m
+              memory: 128Mi
+            requests:
+              cpu: 10m
+              memory: 64Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+      serviceAccountName: agent-forge-operator
+      terminationGracePeriodSeconds: 10

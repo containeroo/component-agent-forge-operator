@@ -1,0 +1,18 @@
+---
+parameters:
+  agent_forge_operator:
+    name: agent-forge-operator
+    namespace: syn-agent-forge-operator
+
+    charts:
+      agent-forge-operator:
+        source: https://charts.containeroo.ch
+        version: 0.1.1
+
+    images:
+      operator:
+        repository: ghcr.io/containeroo/agent-forge-operator
+        tag: v0.0.17
+
+    helm_values:
+      image: ${agent_forge_operator:images:operator}

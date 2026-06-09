@@ -1,0 +1,29 @@
+---
+parameters:
+  kapitan:
+    dependencies:
+      - type: helm
+        source: ${agent_forge_operator:charts:agent-forge-operator:source}
+        chart_name: agent-forge-operator
+        version: ${agent_forge_operator:charts:agent-forge-operator:version}
+        output_path: dependencies/agent-forge-operator/helmcharts/agent-forge-operator-${agent_forge_operator:charts:agent-forge-operator:version}
+    compile:
+      - input_paths:
+          - ${_base_directory}/component/app.jsonnet
+        input_type: jsonnet
+        output_path: .
+      - input_paths:
+          - dependencies/agent-forge-operator/helmcharts/agent-forge-operator-${agent_forge_operator:charts:agent-forge-operator:version}
+        input_type: helm
+        output_type: yaml
+        output_path: agent-forge-operator/10_agent_forge_operator_helmchart
+        helm_values: ${agent_forge_operator:helm_values}
+        helm_params:
+          name: ${agent_forge_operator:name}
+          namespace: ${agent_forge_operator:namespace}
+  commodore:
+    postprocess:
+      filters:
+        - type: jsonnet
+          path: agent-forge-operator/10_agent_forge_operator_helmchart/agent-forge-operator/crds
+          filter: postprocess/drop_null_objects.jsonnet

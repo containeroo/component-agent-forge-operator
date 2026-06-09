@@ -1,0 +1,7 @@
+---
+name: agent-forge-operator
+title: agent-forge-operator
+version: master
+start_page: ROOT:index.adoc
+nav:
+  - modules/ROOT/partials/nav.adoc
