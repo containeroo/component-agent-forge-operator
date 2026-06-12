@@ -21,3 +21,9 @@ parameters:
         helm_params:
           name: ${agent_forge_operator:name}
           namespace: ${agent_forge_operator:namespace}
+  commodore:
+    postprocess:
+      filters:
+        - type: jsonnet
+          path: agent-forge-operator/10_agent_forge_operator_helmchart/agent-forge-operator/crds
+          filter: postprocess/drop_null_objects.jsonnet

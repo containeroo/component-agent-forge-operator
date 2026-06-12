@@ -7,7 +7,7 @@ parameters:
     charts:
       agent-forge-operator:
         source: https://charts.containeroo.ch
-        version: 0.1.2
+        version: 0.1.3
 
     images:
       operator:
