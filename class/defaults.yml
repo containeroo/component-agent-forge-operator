@@ -12,7 +12,7 @@ parameters:
     images:
       operator:
         repository: ghcr.io/containeroo/agent-forge-operator
-        tag: v0.0.17
+        tag: v0.0.29
 
     helm_values:
       image: ${agent_forge_operator:images:operator}
