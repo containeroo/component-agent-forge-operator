@@ -1,10 +1,10 @@
 {
   "template": "https://github.com/projectsyn/commodore-component-template.git",
-  "commit": "7e46facc758385bc32eeecab92b4639c66fd4e4f",
+  "commit": "e808c6d27cffec1429ced096076cf10a69ee35af",
   "skip": [
     ".github/workflows/*"
   ],
-  "checkout": "main",
+  "checkout": null,
   "context": {
     "cookiecutter": {
       "name": "agent-forge-operator",
@@ -28,7 +28,7 @@
       "github_name": "component-agent-forge-operator",
       "github_url": "https://github.com/containeroo/component-agent-forge-operator",
       "_template": "https://github.com/projectsyn/commodore-component-template.git",
-      "_commit": "7e46facc758385bc32eeecab92b4639c66fd4e4f"
+      "_commit": "e808c6d27cffec1429ced096076cf10a69ee35af"
     }
   },
   "directory": null
