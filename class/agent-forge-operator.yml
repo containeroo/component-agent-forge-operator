@@ -21,6 +21,10 @@ parameters:
         helm_params:
           name: ${agent_forge_operator:name}
           namespace: ${agent_forge_operator:namespace}
+      - input_paths:
+          - ${_base_directory}/component/main.jsonnet
+        input_type: jsonnet
+        output_path: agent-forge-operator/
   commodore:
     postprocess:
       filters:
