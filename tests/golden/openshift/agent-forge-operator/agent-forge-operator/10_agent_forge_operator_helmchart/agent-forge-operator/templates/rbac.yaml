@@ -1,0 +1,214 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/instance: agent-forge-operator
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: agent-forge-operator
+    app.kubernetes.io/version: v0.1.0
+    helm.sh/chart: agent-forge-operator-0.2.0
+  name: agent-forge-operator
+rules:
+  - apiGroups:
+      - ''
+    resources:
+      - events
+    verbs:
+      - create
+      - patch
+  - apiGroups:
+      - ''
+    resources:
+      - secrets
+    verbs:
+      - get
+  - apiGroups:
+      - agent-forge.containeroo.ch
+    resources:
+      - vsphereagentpools
+      - vsphereagents
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - agent-forge.containeroo.ch
+    resources:
+      - vsphereagentpools/finalizers
+      - vsphereagents/finalizers
+    verbs:
+      - update
+  - apiGroups:
+      - agent-forge.containeroo.ch
+    resources:
+      - vsphereagentpools/status
+      - vsphereagents/status
+    verbs:
+      - get
+      - patch
+      - update
+  - apiGroups:
+      - agent-install.openshift.io
+    resources:
+      - agents
+      - infraenvs
+    verbs:
+      - delete
+      - get
+      - list
+      - patch
+      - watch
+  - apiGroups:
+      - capi-provider.agent-install.openshift.io
+    resources:
+      - agentmachines
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - cluster.x-k8s.io
+    resources:
+      - machines
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - events.k8s.io
+    resources:
+      - events
+    verbs:
+      - create
+      - patch
+      - update
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/instance: agent-forge-operator
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: agent-forge-operator
+    app.kubernetes.io/version: v0.1.0
+    helm.sh/chart: agent-forge-operator-0.2.0
+  name: agent-forge-operator-metrics-auth
+rules:
+  - apiGroups:
+      - authentication.k8s.io
+    resources:
+      - tokenreviews
+    verbs:
+      - create
+  - apiGroups:
+      - authorization.k8s.io
+    resources:
+      - subjectaccessreviews
+    verbs:
+      - create
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    app.kubernetes.io/instance: agent-forge-operator
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: agent-forge-operator
+    app.kubernetes.io/version: v0.1.0
+    helm.sh/chart: agent-forge-operator-0.2.0
+  name: agent-forge-operator
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: agent-forge-operator
+subjects:
+  - kind: ServiceAccount
+    name: agent-forge-operator
+    namespace: syn-agent-forge-operator
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    app.kubernetes.io/instance: agent-forge-operator
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: agent-forge-operator
+    app.kubernetes.io/version: v0.1.0
+    helm.sh/chart: agent-forge-operator-0.2.0
+  name: agent-forge-operator-metrics-auth
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: agent-forge-operator-metrics-auth
+subjects:
+  - kind: ServiceAccount
+    name: agent-forge-operator
+    namespace: syn-agent-forge-operator
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  labels:
+    app.kubernetes.io/instance: agent-forge-operator
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: agent-forge-operator
+    app.kubernetes.io/version: v0.1.0
+    helm.sh/chart: agent-forge-operator-0.2.0
+  name: agent-forge-operator-leader-election
+  namespace: syn-agent-forge-operator
+rules:
+  - apiGroups:
+      - ''
+    resources:
+      - configmaps
+    verbs:
+      - get
+      - list
+      - watch
+      - create
+      - update
+      - patch
+      - delete
+  - apiGroups:
+      - coordination.k8s.io
+    resources:
+      - leases
+    verbs:
+      - get
+      - list
+      - watch
+      - create
+      - update
+      - patch
+      - delete
+  - apiGroups:
+      - ''
+    resources:
+      - events
+    verbs:
+      - create
+      - patch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  labels:
+    app.kubernetes.io/instance: agent-forge-operator
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: agent-forge-operator
+    app.kubernetes.io/version: v0.1.0
+    helm.sh/chart: agent-forge-operator-0.2.0
+  name: agent-forge-operator-leader-election
+  namespace: syn-agent-forge-operator
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: agent-forge-operator-leader-election
+subjects:
+  - kind: ServiceAccount
+    name: agent-forge-operator
+    namespace: syn-agent-forge-operator

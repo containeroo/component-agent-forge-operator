@@ -1,4 +1,3 @@
----
 applications:
   - prometheus
 
@@ -11,3 +10,6 @@ parameters:
 
   prometheus:
     defaultInstance: infra
+
+  agent_forge_operator:
+    monitoring_enabled: false

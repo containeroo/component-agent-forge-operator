@@ -30,7 +30,7 @@ Upstream Helm repository URL for `agent-forge-operator`.
 
 [horizontal]
 type:: string
-default:: `0.1.4`
+default:: `0.2.0`
 
 Upstream Helm chart version to deploy.
 
@@ -46,9 +46,17 @@ Operator image repository used in chart values.
 
 [horizontal]
 type:: string
-default:: `v0.0.30`
+default:: `v0.1.0`
 
 Operator image tag used in chart values.
+
+== `monitoring_enabled`
+
+[horizontal]
+type:: boolean
+default:: `true`
+
+Enables the monitoring resources. When enabled, the component enables the chart's `ServiceMonitor` and `PrometheusRule` and adds the same namespace-level monitoring labels described by `component-filesystem-exporter`: `SYNMonitoring=main` on most distributions, or `openshift.io/cluster-monitoring=true` on OpenShift 4 and OKE.
 
 == `helm_values`
 
@@ -74,8 +82,8 @@ agent_forge_operator:
   namespace: syn-agent-forge-operator
   charts:
     agent-forge-operator:
-      version: 0.1.4
+      version: 0.2.0
   images:
     operator:
-      tag: v0.0.30
+      tag: v0.1.0
 ----

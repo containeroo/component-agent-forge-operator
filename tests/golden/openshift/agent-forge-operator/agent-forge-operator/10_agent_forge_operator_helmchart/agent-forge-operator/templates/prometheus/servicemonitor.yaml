@@ -1,0 +1,26 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app.kubernetes.io/instance: agent-forge-operator
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: agent-forge-operator
+    app.kubernetes.io/version: v0.1.0
+    helm.sh/chart: agent-forge-operator-0.2.0
+    monitoring.syn.tools/enabled: 'true'
+    prometheus: main
+  name: agent-forge-operator
+  namespace: syn-agent-forge-operator
+spec:
+  endpoints:
+    - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+      interval: 60s
+      path: /metrics
+      port: https
+      scheme: https
+      tlsConfig:
+        insecureSkipVerify: true
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: agent-forge-operator
+      app.kubernetes.io/name: agent-forge-operator

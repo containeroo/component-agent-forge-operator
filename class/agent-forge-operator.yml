@@ -6,18 +6,24 @@ parameters:
         source: ${agent_forge_operator:charts:agent-forge-operator:source}
         chart_name: agent-forge-operator
         version: ${agent_forge_operator:charts:agent-forge-operator:version}
-        output_path: dependencies/agent-forge-operator/helmcharts/agent-forge-operator-${agent_forge_operator:charts:agent-forge-operator:version}
+        output_path: ${_base_directory}/helmcharts/agent-forge-operator
     compile:
       - input_paths:
           - ${_base_directory}/component/app.jsonnet
         input_type: jsonnet
         output_path: .
       - input_paths:
-          - dependencies/agent-forge-operator/helmcharts/agent-forge-operator-${agent_forge_operator:charts:agent-forge-operator:version}
+          - ${_base_directory}/component/helm/agent-forge-operator.jsonnet
+        input_type: jsonnet
+        output_path: ${_base_directory}/helmcharts/agent-forge-operator
+      - input_paths:
+          - ${_base_directory}/helmcharts/agent-forge-operator
         input_type: helm
         output_type: yaml
         output_path: agent-forge-operator/10_agent_forge_operator_helmchart
-        helm_values: ${agent_forge_operator:helm_values}
+        helm_values_files:
+          - ${_base_directory}/helmcharts/agent-forge-operator/values-component.yaml
+          - ${_base_directory}/helmcharts/agent-forge-operator/values-overrides.yaml
         helm_params:
           name: ${agent_forge_operator:name}
           namespace: ${agent_forge_operator:namespace}

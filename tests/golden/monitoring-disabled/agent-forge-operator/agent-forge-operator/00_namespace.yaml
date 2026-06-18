@@ -3,7 +3,5 @@ kind: Namespace
 metadata:
   annotations: {}
   labels:
-    SYNMonitoring: main
-    monitoring.syn.tools/infra: 'true'
     name: syn-agent-forge-operator
   name: syn-agent-forge-operator
