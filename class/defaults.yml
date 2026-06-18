@@ -7,12 +7,12 @@ parameters:
     charts:
       agent-forge-operator:
         source: https://charts.containeroo.ch
-        version: 0.2.0
+        version: 1.0.0
 
     images:
       operator:
         repository: ghcr.io/containeroo/agent-forge-operator
-        tag: v0.1.0
+        tag: v1.0.0
 
     monitoring_enabled: true
 
