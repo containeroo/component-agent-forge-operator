@@ -30,7 +30,7 @@ Upstream Helm repository URL for `agent-forge-operator`.
 
 [horizontal]
 type:: string
-default:: `0.2.0`
+default:: `1.0.1`
 
 Upstream Helm chart version to deploy.
 
@@ -46,7 +46,7 @@ Operator image repository used in chart values.
 
 [horizontal]
 type:: string
-default:: `v0.1.0`
+default:: `v1.0.1`
 
 Operator image tag used in chart values.
 
@@ -82,8 +82,8 @@ agent_forge_operator:
   namespace: syn-agent-forge-operator
   charts:
     agent-forge-operator:
-      version: 0.2.0
+      version: 1.0.1
   images:
     operator:
-      tag: v0.1.0
+      tag: v1.0.1
 ----
