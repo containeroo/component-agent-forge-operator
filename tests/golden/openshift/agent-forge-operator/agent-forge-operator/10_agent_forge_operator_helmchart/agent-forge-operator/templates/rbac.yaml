@@ -5,8 +5,8 @@ metadata:
     app.kubernetes.io/instance: agent-forge-operator
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: agent-forge-operator
-    app.kubernetes.io/version: v1.0.1
-    helm.sh/chart: agent-forge-operator-1.0.1
+    app.kubernetes.io/version: v1.0.2
+    helm.sh/chart: agent-forge-operator-1.0.2
   name: agent-forge-operator
 rules:
   - apiGroups:
@@ -95,8 +95,8 @@ metadata:
     app.kubernetes.io/instance: agent-forge-operator
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: agent-forge-operator
-    app.kubernetes.io/version: v1.0.1
-    helm.sh/chart: agent-forge-operator-1.0.1
+    app.kubernetes.io/version: v1.0.2
+    helm.sh/chart: agent-forge-operator-1.0.2
   name: agent-forge-operator-metrics-auth
 rules:
   - apiGroups:
@@ -119,8 +119,8 @@ metadata:
     app.kubernetes.io/instance: agent-forge-operator
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: agent-forge-operator
-    app.kubernetes.io/version: v1.0.1
-    helm.sh/chart: agent-forge-operator-1.0.1
+    app.kubernetes.io/version: v1.0.2
+    helm.sh/chart: agent-forge-operator-1.0.2
   name: agent-forge-operator
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -138,8 +138,8 @@ metadata:
     app.kubernetes.io/instance: agent-forge-operator
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: agent-forge-operator
-    app.kubernetes.io/version: v1.0.1
-    helm.sh/chart: agent-forge-operator-1.0.1
+    app.kubernetes.io/version: v1.0.2
+    helm.sh/chart: agent-forge-operator-1.0.2
   name: agent-forge-operator-metrics-auth
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -157,8 +157,8 @@ metadata:
     app.kubernetes.io/instance: agent-forge-operator
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: agent-forge-operator
-    app.kubernetes.io/version: v1.0.1
-    helm.sh/chart: agent-forge-operator-1.0.1
+    app.kubernetes.io/version: v1.0.2
+    helm.sh/chart: agent-forge-operator-1.0.2
   name: agent-forge-operator-leader-election
   namespace: syn-agent-forge-operator
 rules:
@@ -201,8 +201,8 @@ metadata:
     app.kubernetes.io/instance: agent-forge-operator
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: agent-forge-operator
-    app.kubernetes.io/version: v1.0.1
-    helm.sh/chart: agent-forge-operator-1.0.1
+    app.kubernetes.io/version: v1.0.2
+    helm.sh/chart: agent-forge-operator-1.0.2
   name: agent-forge-operator-leader-election
   namespace: syn-agent-forge-operator
 roleRef:
