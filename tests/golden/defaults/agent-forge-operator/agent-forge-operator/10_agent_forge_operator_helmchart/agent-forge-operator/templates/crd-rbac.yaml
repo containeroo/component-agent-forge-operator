@@ -1,0 +1,97 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/instance: agent-forge-operator
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: agent-forge-operator
+    app.kubernetes.io/version: v1.1.0
+    helm.sh/chart: agent-forge-operator-1.1.0
+  name: vsphereagentpool-admin-role
+rules:
+  - apiGroups:
+      - agent-forge.containeroo.ch
+    resources:
+      - vsphereagentpools
+      - vsphereagents
+    verbs:
+      - '*'
+  - apiGroups:
+      - agent-forge.containeroo.ch
+    resources:
+      - vsphereagentpools/status
+      - vsphereagents/status
+    verbs:
+      - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/instance: agent-forge-operator
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: agent-forge-operator
+    app.kubernetes.io/version: v1.1.0
+    helm.sh/chart: agent-forge-operator-1.1.0
+  name: vsphereagentpool-editor-role
+rules:
+  - apiGroups:
+      - agent-forge.containeroo.ch
+    resources:
+      - vsphereagentpools
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - agent-forge.containeroo.ch
+    resources:
+      - vsphereagentpools/status
+    verbs:
+      - get
+  - apiGroups:
+      - agent-forge.containeroo.ch
+    resources:
+      - vsphereagents
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - agent-forge.containeroo.ch
+    resources:
+      - vsphereagents/status
+    verbs:
+      - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/instance: agent-forge-operator
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: agent-forge-operator
+    app.kubernetes.io/version: v1.1.0
+    helm.sh/chart: agent-forge-operator-1.1.0
+  name: vsphereagentpool-viewer-role
+rules:
+  - apiGroups:
+      - agent-forge.containeroo.ch
+    resources:
+      - vsphereagentpools
+      - vsphereagents
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - agent-forge.containeroo.ch
+    resources:
+      - vsphereagentpools/status
+      - vsphereagents/status
+    verbs:
+      - get
